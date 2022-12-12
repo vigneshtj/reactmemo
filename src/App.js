@@ -17,11 +17,15 @@ const Box = ({ params }) => {
   );
 };
 
-const MemoisedBox = memo(Box);
+const MemoisedBox = memo(
+  Box,
+  (prevProps, nextProps) => prevProps.params.color === nextProps.params.color
+);
 function App() {
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("red");
   console.log("Re-rendered App");
+
   return (
     <>
       <button
