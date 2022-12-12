@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, memo, useMemo } from "react";
 
 const Box = ({ params }) => {
   console.log("Re-rendered Box");
@@ -17,14 +17,21 @@ const Box = ({ params }) => {
   );
 };
 
+const MemoisedBox = memo(Box);
+// eslint-disable-next-line no-lone-blocks
+{
+  /*
 const MemoisedBox = memo(
   Box,
   (prevProps, nextProps) => prevProps.params.color === nextProps.params.color
 );
+*/
+}
 function App() {
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("red");
   console.log("Re-rendered App");
+  const params = useMemo(() => ({ color }), [color]);
 
   return (
     <>
@@ -36,7 +43,7 @@ function App() {
         Count
       </button>{" "}
       {count}
-      <MemoisedBox params={{ color }} />
+      <MemoisedBox params={params} />
       <button
         onClick={() => setColor((prev) => (prev === "red" ? "green" : "red"))}
       >
