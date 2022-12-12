@@ -1,6 +1,6 @@
 import { useState, memo, useMemo } from "react";
 
-const Box = ({ params }) => {
+const Box = ({ params, clickfn }) => {
   console.log("Re-rendered Box");
   return (
     <div
@@ -11,6 +11,7 @@ const Box = ({ params }) => {
         margin: "1rem",
         width: "50px",
       }}
+      onClick={clickfn}
     >
       {" "}
     </div>
@@ -43,7 +44,7 @@ function App() {
         Count
       </button>{" "}
       {count}
-      <MemoisedBox params={params} />
+      <MemoisedBox params={params} clickfn={() => alert("Box Clicked!")} />
       <button
         onClick={() => setColor((prev) => (prev === "red" ? "green" : "red"))}
       >
