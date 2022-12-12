@@ -1,11 +1,11 @@
 import { useState, memo } from "react";
 
-const Box = ({ color }) => {
+const Box = ({ params }) => {
   console.log("Re-rendered Box");
   return (
     <div
       style={{
-        background: color,
+        background: params.color,
         padding: "2rem",
         border: "1px solid black",
         margin: "1rem",
@@ -32,7 +32,7 @@ function App() {
         Count
       </button>{" "}
       {count}
-      <MemoisedBox color={color} />
+      <MemoisedBox params={{ color }} />
       <button
         onClick={() => setColor((prev) => (prev === "red" ? "green" : "red"))}
       >
