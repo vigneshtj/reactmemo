@@ -1,3 +1,5 @@
+This project is an example for React.memo, useMemo, useCallback
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
