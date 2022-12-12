@@ -1,4 +1,4 @@
-import { useState, memo, useMemo } from "react";
+import { useState, memo, useMemo, useCallback } from "react";
 
 const Box = ({ params, clickfn }) => {
   console.log("Re-rendered Box");
@@ -33,6 +33,7 @@ function App() {
   const [color, setColor] = useState("red");
   console.log("Re-rendered App");
   const params = useMemo(() => ({ color }), [color]);
+  const clickfn = useCallback(() => alert("Box Clicked!"), []);
 
   return (
     <>
@@ -44,7 +45,7 @@ function App() {
         Count
       </button>{" "}
       {count}
-      <MemoisedBox params={params} clickfn={() => alert("Box Clicked!")} />
+      <MemoisedBox params={params} clickfn={clickfn} />
       <button
         onClick={() => setColor((prev) => (prev === "red" ? "green" : "red"))}
       >
